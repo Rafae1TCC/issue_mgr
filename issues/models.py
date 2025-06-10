@@ -17,6 +17,7 @@ class Issue(models.Model):
     reporter = models.ForeignKey(
         get_user_model(),
         on_delete=models.SET_NULL,
+        null=True
     )
     assignee = models.ForeignKey(
         get_user_model(),
@@ -31,7 +32,7 @@ class Issue(models.Model):
     assigned_team = models.ForeignKey(
         Team,
         on_delete=models.SET_NULL,
-        null=True, null=True
+        null=True
     )
     created_on = models.DateTimeField(auto_now_add=True)
 
