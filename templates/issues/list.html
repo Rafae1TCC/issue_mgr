@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block title %} Issues {% endblock title %}
+
+{% block content %}
+<h1>Issues</h1>
+<div class="container text-center">
+  <div class="row align-items-start">
+    <div class="col">
+      <h3>To do</h3>
+      {% for issue in to-do-list %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ i3ssue.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
+            <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+            
+            <a href="{% url 'detail' issue.id %}" class="card-link">Detailed view</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h3>In process</h3>
+      {% for issue in in-progress-list %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ issue.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
+            <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+            
+            <a href="{% url 'detail' issue.id %}" class="card-link">Detailed view</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <div class="col">
+      <h3>Complete</h3>
+      {% for issue in done-list %}
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ issue.title }}</h5>
+            <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
+            <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+            
+            <a href="{% url 'detail' issue.id %}" class="card-link">Detailed view</a>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
