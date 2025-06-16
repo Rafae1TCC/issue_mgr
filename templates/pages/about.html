@@ -4,17 +4,34 @@ About Page
 {% endblock title %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1>About Issue Manager</h1>
-    <p>This application is designed to help users manage issues effectively. It allows users to create, view, and manage issues in a user-friendly interface.</p>
-    <h2>Features</h2>
-    <ul>
-        <li>User authentication (login/signup)</li>
-        <li>Create and manage issues</li>
-        <li>View issue details</li>
-        <li>Responsive design using Bootstrap</li>
-    </ul>
-    <h2>Technologies Used</h2>
-    <p>This application is built using Django, a high-level Python web framework, and utilizes Bootstrap for responsive design.</p>
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-5">
+        <h1 class="display-4 mb-4">About Issue Manager</h1>
+        <p class="lead">This application is designed to help users manage issues effectively with a clean, modern interface.</p>
+        
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <h2><i class="bi bi-stars text-primary me-2"></i>Features</h2>
+                <ul class="list-group list-group-flush mb-4">
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check-circle-fill text-success me-2"></i>User authentication (login/signup)</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check-circle-fill text-success me-2"></i>Create and manage issues</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check-circle-fill text-success me-2"></i>Kanban-style board view</li>
+                    <li class="list-group-item bg-transparent"><i class="bi bi-check-circle-fill text-success me-2"></i>Responsive design</li>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <h2><i class="bi bi-code-slash text-primary me-2"></i>Technologies</h2>
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <ul class="list-unstyled">
+                            <li><i class="bi bi-dot text-primary"></i> Django - Backend framework</li>
+                            <li><i class="bi bi-dot text-primary"></i> Bootstrap 5 - Frontend styling</li>
+                            <li><i class="bi bi-dot text-primary"></i> PostgreSQL/SQLite - Database</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock content %}

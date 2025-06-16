@@ -3,9 +3,34 @@
 {% block title %}Home Page{% endblock title %}
 
 {% block content %}
-<div class="container mt-5">
-    <h1>Welcome to the Issue Manager Home Page</h1>
-    <p>This is a simple Issue Management app developed with Django!</p>
+<div class="row justify-content-center">
+    <div class="col-lg-8 text-center">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-5">
+                <h1 class="display-4 mb-4">Welcome to Issue Manager</h1>
+                <p class="lead mb-4">A simple yet powerful tool to track and manage your team's work, inspired by Trello and Jira.</p>
+                
+                {% if user.is_authenticated %}
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'list' %}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-kanban"></i> View Issues
+                        </a>
+                        <a href="{% url 'new' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-plus-lg"></i> Create Issue
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="{% url 'login' %}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-box-arrow-in-right"></i> Log In
+                        </a>
+                        <a href="{% url 'signup' %}" class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-person-plus"></i> Sign Up
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
-

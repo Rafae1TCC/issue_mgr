@@ -3,52 +3,83 @@
 {% block title %} Issues {% endblock title %}
 
 {% block content %}
-<h1>Issues</h1>
-<div class="container text-center">
-  <div class="row align-items-start">
-    <div class="col">
-      <h3>To do</h3>
-      {% for issue in to-do-list %}
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ i3ssue.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
-            <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
-            
-            <a href="{% url 'detail' issue.id %}" class="card-link">Detailed view</a>
-          </div>
-        </div>
-      {% endfor %}
+<div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Issue Board</h1>
+        <a href="{% url 'new' %}" class="btn btn-primary">
+            <i class="bi bi-plus-lg"></i> Create Issue
+        </a>
     </div>
-    <div class="col">
-      <h3>In process</h3>
-      {% for issue in in-progress-list %}
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ issue.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
-            <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
-            
-            <a href="{% url 'detail' issue.id %}" class="card-link">Detailed view</a>
-          </div>
+    
+    <div class="row">
+        <div class="col-md-4 issue-status-column">
+            <h3><i class="bi bi-card-checklist me-2"></i>To Do</h3>
+            {% for issue in to_do_list %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <span class="badge bg-todo status-badge mb-2">To Do</span>
+                        <h5 class="card-title">{{ issue.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ issue.summary }}</h6>
+                        <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Assignee: {{ issue.assignee|default:"Unassigned" }}</small>
+                            <a href="{% url 'detail' issue.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-muted py-4">
+                    <i class="bi bi-inbox" style="font-size: 2rem;"></i>
+                    <p>No issues in this column</p>
+                </div>
+            {% endfor %}
         </div>
-      {% endfor %}
-    </div>
-    <div class="col">
-      <h3>Complete</h3>
-      {% for issue in done-list %}
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ issue.title }}</h5>
-            <h6 class="card-subtitle mb-2 text-body-secondary">{{ issue.summary }}</h6>
-            <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
-            
-            <a href="{% url 'detail' issue.id %}" class="card-link">Detailed view</a>
-          </div>
+        
+        <div class="col-md-4 issue-status-column">
+            <h3><i class="bi bi-gear me-2"></i>In Progress</h3>
+            {% for issue in in_progress_list %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <span class="badge bg-inprogress status-badge mb-2">In Progress</span>
+                        <h5 class="card-title">{{ issue.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ issue.summary }}</h6>
+                        <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Assignee: {{ issue.assignee }}</small>
+                            <a href="{% url 'detail' issue.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-muted py-4">
+                    <i class="bi bi-inbox" style="font-size: 2rem;"></i>
+                    <p>No issues in this column</p>
+                </div>
+            {% endfor %}
         </div>
-      {% endfor %}
+        
+        <div class="col-md-4 issue-status-column">
+            <h3><i class="bi bi-check-circle me-2"></i>Complete</h3>
+            {% for issue in done_list %}
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <span class="badge bg-done status-badge mb-2">Done</span>
+                        <h5 class="card-title">{{ issue.title }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">{{ issue.summary }}</h6>
+                        <p class="card-text">{{ issue.description|truncatechars:128 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">Assignee: {{ issue.assignee }}</small>
+                            <a href="{% url 'detail' issue.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="text-center text-muted py-4">
+                    <i class="bi bi-inbox" style="font-size: 2rem;"></i>
+                    <p>No issues in this column</p>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-  </div>
 </div>
-
 {% endblock content %}
